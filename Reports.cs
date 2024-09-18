@@ -18,6 +18,13 @@ namespace MunicipalServiceApp
             InitializeComponent();
         }
 
+        /// <summary>
+        /// This method displays the user input and the attatchment
+        /// (OpenAI, 2024)
+        /// https://chatgpt.com/share/66ea0923-e8e0-8012-8c9a-54a226bcf771
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Reports_Load(object sender, EventArgs e)
         {
             // Access the static list from ChildForm1 and display the data
@@ -38,7 +45,7 @@ namespace MunicipalServiceApp
                     pictureBox.Width = 100;   // Adjust width as needed
 
                     // Add the PictureBox to the form dynamically (for example, to a FlowLayoutPanel or other container)
-                    flowLayoutPanel1.Controls.Add(pictureBox);  // Assuming you have a FlowLayoutPanel to hold images
+                    flowLayoutPanel1.Controls.Add(pictureBox);  
                 }
             }
         }

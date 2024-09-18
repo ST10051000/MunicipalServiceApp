@@ -65,6 +65,11 @@ namespace MunicipalServiceApp
             reports.Show();
         }
 
+        /// <summary>
+        /// Takes the user to the homepage
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void fileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HomePage homepage = new HomePage();
@@ -72,17 +77,15 @@ namespace MunicipalServiceApp
             homepage.Show();
         }
 
-        
-
+        /// <summary>
+        /// Makes sure the homepage opens on startup
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Create an instance of the child form (HomePage)
             HomePage homePage = new HomePage();
-
-            // Set the parent form as the MDI container
             homePage.MdiParent = this;
-
-            // Show the child form (HomePage)
             homePage.Show();
         }
     }     
