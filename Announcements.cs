@@ -13,8 +13,12 @@ namespace MunicipalServiceApp
     public partial class Announcements : Form
     {
         // Sorted Dictionary to store events based on date
-        private SortedDictionary<DateTime, List<AnnouncementsClass>> announcementDictionary = new SortedDictionary<DateTime, List<AnnouncementsClass>>();
+        // Priority Queue for managing events based on their date
+        private SortedDictionary<DateTime, Queue<AnnouncementsClass>> priorityQueue = new SortedDictionary<DateTime, Queue<AnnouncementsClass>>();
         private string currentFilter = "All"; // To track whether "All", "Events", or "Announcements" is selected
+        
+        private HashSet<string> uniqueCategories = new HashSet<string>();  // For unique categories
+
         private Button currentSelectedButton; // Track the currently selected button
 
 
@@ -47,13 +51,17 @@ namespace MunicipalServiceApp
 
             foreach (var ev in events)
             {
-                // Insert event into announcement dictionary
-                if (!announcementDictionary.ContainsKey(ev.Date))
+                // Add event to the priority queue, based on the event's date
+                if (!priorityQueue.ContainsKey(ev.Date))
                 {
-                    announcementDictionary[ev.Date] = new List<AnnouncementsClass>();
+                    priorityQueue[ev.Date] = new Queue<AnnouncementsClass>();
                 }
-                announcementDictionary[ev.Date].Add(ev);
 
+                // Enqueue the event for the given date
+                priorityQueue[ev.Date].Enqueue(ev);
+
+                // Add category and date to the sets to ensure uniqueness
+                uniqueCategories.Add(ev.Category);  // Ensure no duplicate categories
             }
         }
 
@@ -61,11 +69,12 @@ namespace MunicipalServiceApp
         {
             // Predefined categories: "All", "Sport", "Community", "Other"
             comboBoxCategory.Items.Add("All");
-            //comboBoxCategory.Items.AddRange(categoriesSet.ToArray()); // Add unique categories from the set
-            comboBoxCategory.Items.Add("Sport");
-            comboBoxCategory.Items.Add("Community");
-            comboBoxCategory.Items.Add("Entertainment");
-            comboBoxCategory.Items.Add("Other");
+
+            // Add unique categories from the set
+            foreach (var category in uniqueCategories)
+            {
+                comboBoxCategory.Items.Add(category);
+            }
 
             comboBoxCategory.SelectedIndex = 0; // Default to "All"
 
@@ -91,9 +100,11 @@ namespace MunicipalServiceApp
             string selectedCategory = comboBoxCategory.SelectedItem?.ToString();
             DateTime selectedDate = dateFilter.Value;
 
-            var filteredEvents = announcementDictionary.Where(kv => kv.Key >= selectedDate)
-                                                .SelectMany(kv => kv.Value)
-                                                .Where(ev => (selectedCategory == "All" || ev.Category == selectedCategory));
+            // Retrieve all events from the priority queue that are on or after the selected date
+            var filteredEvents = priorityQueue.Where(kv => kv.Key >= selectedDate)
+                                              .SelectMany(kv => kv.Value)
+                                              .Where(ev => (selectedCategory == "All" || ev.Category == selectedCategory));
+
 
             // Apply the current filter ("All", "Events", "Announcements")
             if (currentFilter == "Events")
@@ -122,10 +133,11 @@ namespace MunicipalServiceApp
         // Separate method for search functionality (searches title and description)
         private void PerformSearch(string searchText)
         {
-            var searchResults = announcementDictionary.SelectMany(kv => kv.Value)
-                                              .Where(ev => ev.Title.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                                                           ev.Description.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0)
-                                              .ToList();
+            var searchResults = priorityQueue.SelectMany(kv => kv.Value)
+                                             .Where(ev => ev.Title.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                                                          ev.Description.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0)
+                                             .ToList();
+
 
             // Clear existing items before adding search results
             listViewAnnouncements.Items.Clear();
