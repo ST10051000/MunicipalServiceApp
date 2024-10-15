@@ -15,6 +15,8 @@ namespace MunicipalServiceApp
         // Sorted Dictionary to store events based on date
         private SortedDictionary<DateTime, List<AnnouncementsClass>> announcementDictionary = new SortedDictionary<DateTime, List<AnnouncementsClass>>();
         private string currentFilter = "All"; // To track whether "All", "Events", or "Announcements" is selected
+        private Button currentSelectedButton; // Track the currently selected button
+
 
 
         public Announcements()
@@ -23,7 +25,7 @@ namespace MunicipalServiceApp
             LoadTestData();  // This method will load some sample data for testing
             PopulateCategoryDropdown();  // Populate category options
             DisplayFilteredEvents();  // Display all events by default
-
+            SetButtonSelected(buttonAll); // Initially set the first button as selected
         }
 
         // Method to load test data (this can later be replaced by actual data retrieval)
@@ -103,8 +105,18 @@ namespace MunicipalServiceApp
                 filteredEvents = filteredEvents.Where(ev => ev.Option == "Announcement");
             }
 
-            // Update DataGridView
-            dataGridAnnouncements.DataSource = filteredEvents.ToList();
+            // Clear existing items before populating new ones
+            listViewAnnouncements.Items.Clear();
+
+            // Populate ListView
+            foreach (var ev in filteredEvents)
+            {
+                ListViewItem item = new ListViewItem(ev.Title);
+                item.SubItems.Add(ev.Date.ToShortDateString());  // Add date
+                item.SubItems.Add(ev.Description);  // Add description
+
+                listViewAnnouncements.Items.Add(item);  // Add item to ListView
+            }
         }
 
         // Separate method for search functionality (searches title and description)
@@ -114,7 +126,34 @@ namespace MunicipalServiceApp
                                               .Where(ev => ev.Title.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
                                                            ev.Description.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0)
                                               .ToList();
-            dataGridAnnouncements.DataSource = searchResults;
+
+            // Clear existing items before adding search results
+            listViewAnnouncements.Items.Clear();
+
+            // Populate ListView with search results
+            foreach (var ev in searchResults)
+            {
+                ListViewItem item = new ListViewItem(ev.Title);
+                item.SubItems.Add(ev.Date.ToShortDateString());
+                item.SubItems.Add(ev.Description);
+
+                listViewAnnouncements.Items.Add(item);
+            }
+        }
+
+        private void SetButtonSelected(Button selectedButton)
+        {
+            // Reset the color of the previous selected button (if any)
+            if (currentSelectedButton != null)
+            {
+                currentSelectedButton.ForeColor = Color.Black;  // Default color
+            }
+
+            // Set the color of the new selected button
+            selectedButton.ForeColor = Color.Green;  // Highlight selected button
+
+            // Update the current selected button
+            currentSelectedButton = selectedButton;
         }
 
 
@@ -126,18 +165,24 @@ namespace MunicipalServiceApp
 
         private void buttonAll_Click(object sender, EventArgs e)
         {
+            SetButtonSelected(buttonAll);  // Highlight the "All" button
+
             currentFilter = "All";
             DisplayFilteredEvents();
         }
 
         private void btnEvents_Click(object sender, EventArgs e)
         {
+            SetButtonSelected(btnEvents);  // Highlight the "All" button
+
             currentFilter = "Events";
             DisplayFilteredEvents();
         }
 
         private void btnAnnouncements_Click(object sender, EventArgs e)
         {
+            SetButtonSelected(btnAnnouncements);  // Highlight the "All" button
+
             currentFilter = "Announcements";
             DisplayFilteredEvents();
         }
