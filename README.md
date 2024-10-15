@@ -1,6 +1,7 @@
 # MunicipalServiceApp
 
-This application allows users to report issues that the municipality should address. The app is built using C# and Windows Forms in the .NET Framework.
+This application allows users to report issues that the municipality should address as well as view local events and announcements. 
+The app is built using C# and Windows Forms in the .NET Framework.
 
 ## Features
 - Report issues by filling out details like location, category, description and attaching an image.
@@ -18,7 +19,7 @@ This application allows users to report issues that the municipality should addr
 - **Development Environment**: Visual Studio 2019 or higher
 - **Framework**: .NET Framework 4.8
 
----
+--- 
 
 ## Installation
 
@@ -72,7 +73,14 @@ Reports
 
 Local Events and Announcements
 
-- This page does not contain anything yet.
+- The user will be navigated to this page when clicking the "Local Events & Announcements" button on the homepage or the navigation bar.
+- This form displays a list of events and announcements, by default it will show you both.
+- The events are displayed according to the soonest date to the latest.
+- The user can choose if they want to see everything (events and announcements) mixed or just seperatly. That is the main filter for this form.
+- The user can filter it even further by choosing a category from the dropdown box.
+- The user can also pick a date from the calenderDatePicker and find an event that way if they would like.
+- Apart from all these filtering options the user can search for an event, they can type in anything and if the data contains the search text it will display it.
+- When the user is searching for something it is being stored to a list and this will then recommend events to users according to their search history. 
 
 Service Request Status
 
