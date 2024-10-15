@@ -45,11 +45,13 @@ namespace MunicipalServiceApp
 
             foreach (var ev in events)
             {
+                // Insert event into announcement dictionary
                 if (!announcementDictionary.ContainsKey(ev.Date))
                 {
                     announcementDictionary[ev.Date] = new List<AnnouncementsClass>();
                 }
                 announcementDictionary[ev.Date].Add(ev);
+
             }
         }
 
@@ -57,6 +59,7 @@ namespace MunicipalServiceApp
         {
             // Predefined categories: "All", "Sport", "Community", "Other"
             comboBoxCategory.Items.Add("All");
+            //comboBoxCategory.Items.AddRange(categoriesSet.ToArray()); // Add unique categories from the set
             comboBoxCategory.Items.Add("Sport");
             comboBoxCategory.Items.Add("Community");
             comboBoxCategory.Items.Add("Entertainment");
@@ -104,10 +107,21 @@ namespace MunicipalServiceApp
             dataGridAnnouncements.DataSource = filteredEvents.ToList();
         }
 
+        // Separate method for search functionality (searches title and description)
+        private void PerformSearch(string searchText)
+        {
+            var searchResults = announcementDictionary.SelectMany(kv => kv.Value)
+                                              .Where(ev => ev.Title.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                                                           ev.Description.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0)
+                                              .ToList();
+            dataGridAnnouncements.DataSource = searchResults;
+        }
+
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            
+            string searchText = txtSearch.Text;
+            PerformSearch(searchText);  // Call the search method
         }
 
         private void buttonAll_Click(object sender, EventArgs e)
@@ -127,5 +141,6 @@ namespace MunicipalServiceApp
             currentFilter = "Announcements";
             DisplayFilteredEvents();
         }
+
     }
 }
