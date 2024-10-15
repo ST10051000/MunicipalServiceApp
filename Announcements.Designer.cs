@@ -53,10 +53,10 @@
             // 
             // panelSearch
             // 
-            this.panelSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panelSearch.BackColor = System.Drawing.Color.Transparent;
             this.panelSearch.Controls.Add(this.btnSearch);
             this.panelSearch.Controls.Add(this.txtSearch);
+            this.panelSearch.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSearch.Location = new System.Drawing.Point(0, 0);
             this.panelSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelSearch.Name = "panelSearch";
@@ -80,12 +80,13 @@
             this.txtSearch.Location = new System.Drawing.Point(137, 15);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(400, 22);
+            this.txtSearch.Size = new System.Drawing.Size(400, 20);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.Text = "Search announcements";
             // 
             // panelFilter
             // 
+            this.panelFilter.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panelFilter.BackColor = System.Drawing.Color.Transparent;
             this.panelFilter.Controls.Add(this.dateFilter);
             this.panelFilter.Controls.Add(this.comboBoxCategory);
@@ -104,7 +105,7 @@
             this.dateFilter.Location = new System.Drawing.Point(665, 4);
             this.dateFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateFilter.Name = "dateFilter";
-            this.dateFilter.Size = new System.Drawing.Size(119, 22);
+            this.dateFilter.Size = new System.Drawing.Size(119, 20);
             this.dateFilter.TabIndex = 4;
             // 
             // comboBoxCategory
@@ -167,6 +168,9 @@
             // 
             // listViewAnnouncements
             // 
+            this.listViewAnnouncements.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewAnnouncements.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Title,
             this.Date,
@@ -177,7 +181,7 @@
             this.listViewAnnouncements.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listViewAnnouncements.MultiSelect = false;
             this.listViewAnnouncements.Name = "listViewAnnouncements";
-            this.listViewAnnouncements.Size = new System.Drawing.Size(799, 184);
+            this.listViewAnnouncements.Size = new System.Drawing.Size(800, 184);
             this.listViewAnnouncements.TabIndex = 2;
             this.listViewAnnouncements.UseCompatibleStateImageBehavior = false;
             this.listViewAnnouncements.View = System.Windows.Forms.View.Details;
@@ -185,7 +189,7 @@
             // Title
             // 
             this.Title.Text = "Title";
-            this.Title.Width = 200;
+            this.Title.Width = 150;
             // 
             // Date
             // 
@@ -199,16 +203,16 @@
             // 
             // listViewRecommendations
             // 
+            this.listViewRecommendations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.listViewRecommendations.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.RecommendDate,
             this.RecommendTitle,
             this.RecommendDescription});
-            this.listViewRecommendations.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listViewRecommendations.HideSelection = false;
             this.listViewRecommendations.Location = new System.Drawing.Point(0, 325);
-            this.listViewRecommendations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewRecommendations.Margin = new System.Windows.Forms.Padding(4);
             this.listViewRecommendations.Name = "listViewRecommendations";
-            this.listViewRecommendations.Size = new System.Drawing.Size(800, 125);
+            this.listViewRecommendations.Size = new System.Drawing.Size(326, 125);
             this.listViewRecommendations.TabIndex = 3;
             this.listViewRecommendations.UseCompatibleStateImageBehavior = false;
             this.listViewRecommendations.View = System.Windows.Forms.View.List;
@@ -230,6 +234,7 @@
             // 
             // lblRecommendations
             // 
+            this.lblRecommendations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblRecommendations.AutoSize = true;
             this.lblRecommendations.BackColor = System.Drawing.Color.Transparent;
             this.lblRecommendations.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

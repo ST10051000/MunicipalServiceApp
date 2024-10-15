@@ -61,6 +61,7 @@ namespace MunicipalServiceApp
                 new AnnouncementsClass { Title = "Halloween Celebration", Description = "Join us for a spooky Halloween party!", Date = new DateTime(2024, 10, 31), Category = "Community", Option = "Event" }
             };
 
+            // Using a priority qeue to ensurethere are no duplicate categories
             foreach (var ev in events)
             {             
                 // Adding event to the priority queue, based on the event's date
@@ -73,13 +74,15 @@ namespace MunicipalServiceApp
                 priorityQueue[ev.Date].Enqueue(ev);
 
                 // Add category and date to the sets to ensure uniqueness
-                uniqueCategories.Add(ev.Category);  // Ensures no duplicate categories
+                uniqueCategories.Add(ev.Category);  
             }
         }
 
+        //----------------------------------------------------------------------------------------------------------------------------------
+
+        // Using Sets to add unique categories to the dropdown box
         private void PopulateCategoryDropdown()
         {
-            // Predefined categories: "All", "Sport", "Community", "Other"
             comboBoxCategory.Items.Add("All");
 
             // Add unique categories from the set
@@ -88,11 +91,14 @@ namespace MunicipalServiceApp
                 comboBoxCategory.Items.Add(category);
             }
 
-            comboBoxCategory.SelectedIndex = 0; // Default to "All"
+            // Default to "All"
+            comboBoxCategory.SelectedIndex = 0; 
 
-            // Attach event handler for when category selection changes
+            // Attaching event handler for when category selection changes
             comboBoxCategory.SelectedIndexChanged += ComboBoxCategory_SelectedIndexChanged;
         }
+
+        //----------------------------------------------------------------------------------------------------------------------------------
 
         // Event handler for when the category is changed
         private void ComboBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -106,15 +112,15 @@ namespace MunicipalServiceApp
             DisplayFilteredEvents();  // Trigger search when date is changed
         }
 
-        // Search functionality based on selected filter, category, and date
+        //----------------------------------------------------------------------------------------------------------------------------------
+
+        // Search functionality based on selected filter and category
         private void DisplayFilteredEvents()
         {
             string selectedCategory = comboBoxCategory.SelectedItem?.ToString();
-            DateTime selectedDate = dateFilter.Value;
 
-            // Retrieve all events from the priority queue that are on or after the selected date
-            var filteredEvents = priorityQueue.Where(kv => kv.Key >= selectedDate)
-                                              .SelectMany(kv => kv.Value)
+            // Retrieving all events from the priority queue 
+            var filteredEvents = priorityQueue.SelectMany(kv => kv.Value)
                                               .Where(ev => (selectedCategory == "All" || ev.Category == selectedCategory));
 
 
@@ -135,17 +141,64 @@ namespace MunicipalServiceApp
             foreach (var ev in filteredEvents)
             {
                 ListViewItem item = new ListViewItem(ev.Title);
-                item.SubItems.Add(ev.Date.ToShortDateString());  // Add date
-                item.SubItems.Add(ev.Description);  // Add description
+                item.SubItems.Add(ev.Date.ToShortDateString());  
+                item.SubItems.Add(ev.Description);
 
-                listViewAnnouncements.Items.Add(item);  // Add item to ListView
+                // Add item to ListView
+                listViewAnnouncements.Items.Add(item);  
             }
         }
 
-        // Separate method for search functionality (searches title and description)
-        private void PerformSearch(string searchText)
+        //----------------------------------------------------------------------------------------------------------------------------------
+
+        // Method that displays events for the selected date
+        private void DisplayEventsForSelectedDate()
         {
-            // Add to search history
+            // Getting the selected date from DateTimePicker
+            DateTime selectedDate = dateFilter.Value;  
+
+            // Retrieve events that match the selected date
+            var eventsForSelectedDate = priorityQueue
+                .Where(kv => kv.Key.Date == selectedDate.Date)  
+                .SelectMany(kv => kv.Value);
+
+            // Apply the current filter ("All", "Events", "Announcements")
+            if (currentFilter == "Events")
+            {
+                eventsForSelectedDate = eventsForSelectedDate.Where(ev => ev.Option == "Event");
+            }
+            else if (currentFilter == "Announcements")
+            {
+                eventsForSelectedDate = eventsForSelectedDate.Where(ev => ev.Option == "Announcement");
+            }
+
+            // Clear existing items before populating new ones
+            listViewAnnouncements.Items.Clear();
+
+            // Populate ListView with events for the selected date
+            foreach (var ev in eventsForSelectedDate)
+            {
+                ListViewItem item = new ListViewItem(ev.Title);
+                item.SubItems.Add(ev.Date.ToShortDateString());  
+                item.SubItems.Add(ev.Description);
+
+                // Add item to ListView
+                listViewAnnouncements.Items.Add(item);  
+            }
+
+            // Message when no events are found for selected date
+            if (!eventsForSelectedDate.Any())
+            {
+                MessageBox.Show("No events found for this date.", "No Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        //----------------------------------------------------------------------------------------------------------------------------------
+
+        // Method for search functionality (searches title and description)
+        private void SearchEvent(string searchText)
+        {
+            // Adding to search history
             if (!string.IsNullOrWhiteSpace(searchText) && !searchHistory.Contains(searchText))
             {
                 searchHistory.Add(searchText);
@@ -169,60 +222,25 @@ namespace MunicipalServiceApp
                 listViewAnnouncements.Items.Add(item);
             }
 
+            // Message when search is not found
+            if (!searchResults.Any())
+            {
+                MessageBox.Show("Search not found.", "No Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
             // Get recommendations based on the search text
             GetRecommendations(searchText);
         }
 
-        // Method to display events for the selected date
-        private void DisplayEventsForSelectedDate()
-        {
-            DateTime selectedDate = dateFilter.Value;  // Get the selected date from DateTimePicker
+        //----------------------------------------------------------------------------------------------------------------------------------
 
-            // Retrieve events that match the exact selected date
-            var eventsForSelectedDate = priorityQueue
-                .Where(kv => kv.Key.Date == selectedDate.Date)  // Match events by exact date
-                .SelectMany(kv => kv.Value);
-
-            // Apply the current filter ("All", "Events", "Announcements")
-            if (currentFilter == "Events")
-            {
-                eventsForSelectedDate = eventsForSelectedDate.Where(ev => ev.Option == "Event");
-            }
-            else if (currentFilter == "Announcements")
-            {
-                eventsForSelectedDate = eventsForSelectedDate.Where(ev => ev.Option == "Announcement");
-            }
-
-            // Clear existing items before populating new ones
-            listViewAnnouncements.Items.Clear();
-
-            // Populate ListView with events for the selected date
-            foreach (var ev in eventsForSelectedDate)
-            {
-                ListViewItem item = new ListViewItem(ev.Title);
-                item.SubItems.Add(ev.Date.ToShortDateString());  // Add date
-                item.SubItems.Add(ev.Description);  // Add description
-
-                listViewAnnouncements.Items.Add(item);  // Add item to ListView
-            }
-
-            // If no events are found, you can show a message
-            if (!eventsForSelectedDate.Any())
-            {
-                MessageBox.Show("No events found for the selected date.", "No Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-
+        // Method to display recommendations according to recent searches
         private void GetRecommendations(string searchText)
         {
             var recommendations = priorityQueue.SelectMany(kv => kv.Value)
                 .Where(ev => ev.Title.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
                              ev.Description.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0)
                 .ToList();
-
-            // Clear existing items before adding recommendations
-            listViewRecommendations.Items.Clear();
 
             // Populate ListView with recommendations
             foreach (var ev in recommendations)
@@ -235,52 +253,59 @@ namespace MunicipalServiceApp
             }
         }
 
+        //----------------------------------------------------------------------------------------------------------------------------------
 
+        // Method to change the text colour when the button is selected
         private void SetButtonSelected(Button selectedButton)
         {
             // Reset the color of the previous selected button (if any)
             if (currentSelectedButton != null)
             {
-                currentSelectedButton.ForeColor = Color.White;  // Default color
+                currentSelectedButton.ForeColor = Color.White;  
             }
 
             // Set the color of the new selected button
-            selectedButton.ForeColor = Color.DarkOrange;  // Highlight selected button
+            selectedButton.ForeColor = Color.DarkOrange;  
 
             // Update the current selected button
             currentSelectedButton = selectedButton;
         }
 
+        //----------------------------------------------------------------------------------------------------------------------------------
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string searchText = txtSearch.Text;
-            PerformSearch(searchText);  // Call the search method
+            SearchEvent(searchText);  // Calling the search method
         }
 
         private void buttonAll_Click(object sender, EventArgs e)
         {
-            SetButtonSelected(buttonAll);  // Highlight the "All" button
+            SetButtonSelected(buttonAll);  // Highlighting the "All" button
 
             currentFilter = "All";
-            DisplayFilteredEvents();
+            DisplayFilteredEvents(); // Calling the display method
         }
 
         private void btnEvents_Click(object sender, EventArgs e)
         {
-            SetButtonSelected(btnEvents);  // Highlight the "All" button
+            SetButtonSelected(btnEvents);  // Highlighting the "Events" button
 
             currentFilter = "Events";
-            DisplayFilteredEvents();
+            DisplayFilteredEvents(); // Calling the display method
         }
 
         private void btnAnnouncements_Click(object sender, EventArgs e)
         {
-            SetButtonSelected(btnAnnouncements);  // Highlight the "All" button
+            SetButtonSelected(btnAnnouncements);  // Highlighting the "Announcements" button
 
             currentFilter = "Announcements";
-            DisplayFilteredEvents();
+            DisplayFilteredEvents(); // Calling the display method
         }
+
+        //----------------------------------------------------------------------------------------------------------------------------------
 
     }
 }
+
+//-------------------------------------------------------------THE END----------------------------------------------------------------------
