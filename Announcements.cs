@@ -309,3 +309,6 @@ namespace MunicipalServiceApp
 }
 
 //-------------------------------------------------------------THE END----------------------------------------------------------------------
+// (OpenAI, 2024)
+// https://chatgpt.com/share/670ec6ab-9528-8012-9e1f-76c0a6ea0416
+// Layout of what it should look like
