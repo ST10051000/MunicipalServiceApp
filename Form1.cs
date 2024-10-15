@@ -88,5 +88,15 @@ namespace MunicipalServiceApp
             homePage.MdiParent = this;
             homePage.Show();
         }
-    }     
+
+        /*private void OpenChildForm()
+        {
+            HomePage child = new HomePage();
+            child.StartPosition = FormStartPosition.Manual;
+            child.Size = this.ClientSize; // Set to parent's client size
+            child.Location = this.Location; // Align with parent's location
+            child.Show(this); // Show the child form
+        }*/
+
+    }
 }

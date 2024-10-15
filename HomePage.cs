@@ -22,6 +22,7 @@ namespace MunicipalServiceApp
             ReportIssues reports = new ReportIssues();
             reports.MdiParent = this.MdiParent;
             reports.Show();
+            this.Close(); // Close the current form
         }
 
         private void btnEvents_Click(object sender, EventArgs e)
@@ -29,6 +30,7 @@ namespace MunicipalServiceApp
             Announcements announcements = new Announcements();
             announcements.MdiParent = this.MdiParent;
             announcements.Show();
+            this.Close(); // Close the current form
         }
 
         private void btnRequestServ_Click(object sender, EventArgs e)
@@ -36,6 +38,7 @@ namespace MunicipalServiceApp
             ServiceRequests requests = new ServiceRequests();
             requests.MdiParent = this.MdiParent;
             requests.Show();
+            this.Close(); // Close the current form
         }
     }
 }

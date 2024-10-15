@@ -12,29 +12,41 @@ namespace MunicipalServiceApp
 {
     public partial class Announcements : Form
     {
-        // Sorted Dictionary to store events based on date
-        // Priority Queue for managing events based on their date
+        // Using Sorted Dictionary to store events based on date
+        // Using Priority Queue for managing events based on their date
         private SortedDictionary<DateTime, Queue<AnnouncementsClass>> priorityQueue = new SortedDictionary<DateTime, Queue<AnnouncementsClass>>();
-        private string currentFilter = "All"; // To track whether "All", "Events", or "Announcements" is selected
+
+        // Using a list to track user search patterns
+        private List<string> searchHistory = new List<string>();
+
+        // Using a hashset for unique categories
+        private HashSet<string> uniqueCategories = new HashSet<string>();
+
+        // To track whether "All", "Events", or "Announcements" is selected
+        private string currentFilter = "All";
+
+        // To track the currently selected button
+        private Button currentSelectedButton;
         
-        private HashSet<string> uniqueCategories = new HashSet<string>();  // For unique categories
-
-        private Button currentSelectedButton; // Track the currently selected button
-
-
+        //----------------------------------------------------------------------------------------------------------------------------------
 
         public Announcements()
         {
             InitializeComponent();
-            LoadTestData();  // This method will load some sample data for testing
-            PopulateCategoryDropdown();  // Populate category options
-            DisplayFilteredEvents();  // Display all events by default
-            SetButtonSelected(buttonAll); // Initially set the first button as selected
+            LoadTestData();  // Method that loads some sample data for testing
+            PopulateCategoryDropdown();  // Method that populates category options
+            DisplayFilteredEvents();  // Method that displays all events/announcements by default
+            SetButtonSelected(buttonAll); // Initially set buttonAll as selected
+
+            dateFilter.ValueChanged += (sender, e) => DisplayEventsForSelectedDate(); // Calling DisplayEventsForSelectedDate() method
         }
 
-        // Method to load test data (this can later be replaced by actual data retrieval)
+        //----------------------------------------------------------------------------------------------------------------------------------
+
+        // Method that loads test data
         private void LoadTestData()
         {
+            // Saving all the data to a list
             List<AnnouncementsClass> events = new List<AnnouncementsClass>
             {
                 new AnnouncementsClass { Title = "Community Clean-Up", Description = "Join us to clean up the park.", Date = new DateTime(2024, 10, 16), Category = "Community", Option = "Event" },
@@ -50,8 +62,8 @@ namespace MunicipalServiceApp
             };
 
             foreach (var ev in events)
-            {
-                // Add event to the priority queue, based on the event's date
+            {             
+                // Adding event to the priority queue, based on the event's date
                 if (!priorityQueue.ContainsKey(ev.Date))
                 {
                     priorityQueue[ev.Date] = new Queue<AnnouncementsClass>();
@@ -61,7 +73,7 @@ namespace MunicipalServiceApp
                 priorityQueue[ev.Date].Enqueue(ev);
 
                 // Add category and date to the sets to ensure uniqueness
-                uniqueCategories.Add(ev.Category);  // Ensure no duplicate categories
+                uniqueCategories.Add(ev.Category);  // Ensures no duplicate categories
             }
         }
 
@@ -133,11 +145,16 @@ namespace MunicipalServiceApp
         // Separate method for search functionality (searches title and description)
         private void PerformSearch(string searchText)
         {
-            var searchResults = priorityQueue.SelectMany(kv => kv.Value)
-                                             .Where(ev => ev.Title.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                                                          ev.Description.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0)
-                                             .ToList();
+            // Add to search history
+            if (!string.IsNullOrWhiteSpace(searchText) && !searchHistory.Contains(searchText))
+            {
+                searchHistory.Add(searchText);
+            }
 
+            var searchResults = priorityQueue.SelectMany(kv => kv.Value)
+                .Where(ev => ev.Title.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                             ev.Description.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0)
+                .ToList();
 
             // Clear existing items before adding search results
             listViewAnnouncements.Items.Clear();
@@ -151,18 +168,84 @@ namespace MunicipalServiceApp
 
                 listViewAnnouncements.Items.Add(item);
             }
+
+            // Get recommendations based on the search text
+            GetRecommendations(searchText);
         }
+
+        // Method to display events for the selected date
+        private void DisplayEventsForSelectedDate()
+        {
+            DateTime selectedDate = dateFilter.Value;  // Get the selected date from DateTimePicker
+
+            // Retrieve events that match the exact selected date
+            var eventsForSelectedDate = priorityQueue
+                .Where(kv => kv.Key.Date == selectedDate.Date)  // Match events by exact date
+                .SelectMany(kv => kv.Value);
+
+            // Apply the current filter ("All", "Events", "Announcements")
+            if (currentFilter == "Events")
+            {
+                eventsForSelectedDate = eventsForSelectedDate.Where(ev => ev.Option == "Event");
+            }
+            else if (currentFilter == "Announcements")
+            {
+                eventsForSelectedDate = eventsForSelectedDate.Where(ev => ev.Option == "Announcement");
+            }
+
+            // Clear existing items before populating new ones
+            listViewAnnouncements.Items.Clear();
+
+            // Populate ListView with events for the selected date
+            foreach (var ev in eventsForSelectedDate)
+            {
+                ListViewItem item = new ListViewItem(ev.Title);
+                item.SubItems.Add(ev.Date.ToShortDateString());  // Add date
+                item.SubItems.Add(ev.Description);  // Add description
+
+                listViewAnnouncements.Items.Add(item);  // Add item to ListView
+            }
+
+            // If no events are found, you can show a message
+            if (!eventsForSelectedDate.Any())
+            {
+                MessageBox.Show("No events found for the selected date.", "No Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+
+        private void GetRecommendations(string searchText)
+        {
+            var recommendations = priorityQueue.SelectMany(kv => kv.Value)
+                .Where(ev => ev.Title.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                             ev.Description.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0)
+                .ToList();
+
+            // Clear existing items before adding recommendations
+            listViewRecommendations.Items.Clear();
+
+            // Populate ListView with recommendations
+            foreach (var ev in recommendations)
+            {
+                ListViewItem item = new ListViewItem(ev.Title);
+                item.SubItems.Add(ev.Date.ToShortDateString());
+                item.SubItems.Add(ev.Description);
+
+                listViewRecommendations.Items.Add(item);
+            }
+        }
+
 
         private void SetButtonSelected(Button selectedButton)
         {
             // Reset the color of the previous selected button (if any)
             if (currentSelectedButton != null)
             {
-                currentSelectedButton.ForeColor = Color.Black;  // Default color
+                currentSelectedButton.ForeColor = Color.White;  // Default color
             }
 
             // Set the color of the new selected button
-            selectedButton.ForeColor = Color.Green;  // Highlight selected button
+            selectedButton.ForeColor = Color.DarkOrange;  // Highlight selected button
 
             // Update the current selected button
             currentSelectedButton = selectedButton;

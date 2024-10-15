@@ -131,6 +131,7 @@ namespace MunicipalServiceApp
             Reports reports = new Reports();
             reports.MdiParent = this.MdiParent;  
             reports.Show();
+            this.Close(); // Close the current form
         }
 
         /// <summary>

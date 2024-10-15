@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportIssues));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblLocation = new System.Windows.Forms.Label();
             this.lblCategory = new System.Windows.Forms.Label();
@@ -40,9 +41,9 @@
             this.btnReports = new System.Windows.Forms.Button();
             this.btnAttach = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblImagePath = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblProgress = new System.Windows.Forms.Label();
-            this.lblImagePath = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -50,11 +51,12 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.Beige;
+            this.tableLayoutPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tableLayoutPanel1.BackgroundImage")));
             this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.02417F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.97583F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 303F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.64706F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.35294F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 228F));
             this.tableLayoutPanel1.Controls.Add(this.lblLocation, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblCategory, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.lblDescription, 0, 3);
@@ -71,107 +73,119 @@
             this.tableLayoutPanel1.Controls.Add(this.lblProgress, 3, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.27586F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.72414F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 126F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 92F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 102F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(600, 366);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // lblLocation
             // 
             this.lblLocation.AutoSize = true;
-            this.lblLocation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(32)))));
-            this.lblLocation.Location = new System.Drawing.Point(3, 20);
+            this.lblLocation.BackColor = System.Drawing.Color.Transparent;
+            this.lblLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocation.ForeColor = System.Drawing.Color.Black;
+            this.lblLocation.Location = new System.Drawing.Point(2, 16);
+            this.lblLocation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(61, 16);
+            this.lblLocation.Size = new System.Drawing.Size(66, 15);
             this.lblLocation.TabIndex = 0;
             this.lblLocation.Text = "Location:";
             // 
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(32)))));
-            this.lblCategory.Location = new System.Drawing.Point(3, 52);
+            this.lblCategory.BackColor = System.Drawing.Color.Transparent;
+            this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCategory.ForeColor = System.Drawing.Color.Black;
+            this.lblCategory.Location = new System.Drawing.Point(2, 43);
+            this.lblCategory.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(65, 16);
+            this.lblCategory.Size = new System.Drawing.Size(67, 15);
             this.lblCategory.TabIndex = 1;
             this.lblCategory.Text = "Category:";
             // 
             // lblDescription
             // 
             this.lblDescription.AutoSize = true;
-            this.lblDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(32)))));
-            this.lblDescription.Location = new System.Drawing.Point(3, 87);
+            this.lblDescription.BackColor = System.Drawing.Color.Transparent;
+            this.lblDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescription.ForeColor = System.Drawing.Color.Black;
+            this.lblDescription.Location = new System.Drawing.Point(2, 71);
+            this.lblDescription.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(78, 16);
+            this.lblDescription.Size = new System.Drawing.Size(84, 15);
             this.lblDescription.TabIndex = 2;
             this.lblDescription.Text = "Description:";
             // 
             // lblAttachment
             // 
             this.lblAttachment.AutoSize = true;
-            this.lblAttachment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(32)))));
-            this.lblAttachment.Location = new System.Drawing.Point(3, 213);
+            this.lblAttachment.BackColor = System.Drawing.Color.Transparent;
+            this.lblAttachment.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAttachment.ForeColor = System.Drawing.Color.White;
+            this.lblAttachment.Location = new System.Drawing.Point(2, 173);
+            this.lblAttachment.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAttachment.Name = "lblAttachment";
-            this.lblAttachment.Size = new System.Drawing.Size(76, 16);
+            this.lblAttachment.Size = new System.Drawing.Size(82, 15);
             this.lblAttachment.TabIndex = 3;
             this.lblAttachment.Text = "Attachment:";
             // 
             // txtLocation
             // 
-            this.txtLocation.BackColor = System.Drawing.Color.Ivory;
-            this.txtLocation.Location = new System.Drawing.Point(112, 22);
-            this.txtLocation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtLocation.BackColor = System.Drawing.Color.White;
+            this.txtLocation.Location = new System.Drawing.Point(98, 18);
+            this.txtLocation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtLocation.Multiline = true;
             this.txtLocation.Name = "txtLocation";
-            this.txtLocation.Size = new System.Drawing.Size(224, 21);
+            this.txtLocation.Size = new System.Drawing.Size(155, 18);
             this.txtLocation.TabIndex = 6;
             this.txtLocation.TextChanged += new System.EventHandler(this.txtLocation_TextChanged);
             // 
             // txtDescription
             // 
-            this.txtDescription.BackColor = System.Drawing.Color.Ivory;
-            this.txtDescription.Location = new System.Drawing.Point(112, 89);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDescription.BackColor = System.Drawing.Color.White;
+            this.txtDescription.Location = new System.Drawing.Point(98, 73);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(224, 102);
+            this.txtDescription.Size = new System.Drawing.Size(155, 84);
             this.txtDescription.TabIndex = 8;
             this.txtDescription.Text = "";
             this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
             // 
             // cmboCategory
             // 
-            this.cmboCategory.BackColor = System.Drawing.Color.Ivory;
+            this.cmboCategory.BackColor = System.Drawing.Color.White;
             this.cmboCategory.FormattingEnabled = true;
             this.cmboCategory.Items.AddRange(new object[] {
             "Sanitation",
             "Roads ",
             "Utilities",
             "Other"});
-            this.cmboCategory.Location = new System.Drawing.Point(112, 54);
-            this.cmboCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmboCategory.Location = new System.Drawing.Point(98, 45);
+            this.cmboCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmboCategory.Name = "cmboCategory";
-            this.cmboCategory.Size = new System.Drawing.Size(141, 24);
+            this.cmboCategory.Size = new System.Drawing.Size(107, 21);
             this.cmboCategory.TabIndex = 11;
             this.cmboCategory.SelectedIndexChanged += new System.EventHandler(this.cmboCategory_SelectedIndexChanged);
             // 
             // btnSubmit
             // 
-            this.btnSubmit.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnSubmit.BackColor = System.Drawing.Color.SandyBrown;
             this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSubmit.ForeColor = System.Drawing.Color.White;
-            this.btnSubmit.Location = new System.Drawing.Point(112, 348);
-            this.btnSubmit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSubmit.Location = new System.Drawing.Point(98, 283);
+            this.btnSubmit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(120, 50);
+            this.btnSubmit.Size = new System.Drawing.Size(90, 41);
             this.btnSubmit.TabIndex = 13;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = false;
@@ -179,13 +193,13 @@
             // 
             // btnReports
             // 
-            this.btnReports.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnReports.BackColor = System.Drawing.Color.SandyBrown;
             this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnReports.ForeColor = System.Drawing.Color.White;
-            this.btnReports.Location = new System.Drawing.Point(344, 348);
-            this.btnReports.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnReports.Location = new System.Drawing.Point(257, 283);
+            this.btnReports.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnReports.Name = "btnReports";
-            this.btnReports.Size = new System.Drawing.Size(117, 50);
+            this.btnReports.Size = new System.Drawing.Size(88, 41);
             this.btnReports.TabIndex = 14;
             this.btnReports.Text = "View Reports";
             this.btnReports.UseVisualStyleBackColor = false;
@@ -193,14 +207,14 @@
             // 
             // btnAttach
             // 
-            this.btnAttach.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnAttach.BackColor = System.Drawing.Color.SandyBrown;
             this.btnAttach.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnAttach.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAttach.ForeColor = System.Drawing.Color.White;
-            this.btnAttach.Location = new System.Drawing.Point(112, 215);
-            this.btnAttach.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAttach.Location = new System.Drawing.Point(98, 175);
+            this.btnAttach.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAttach.Name = "btnAttach";
-            this.btnAttach.Size = new System.Drawing.Size(120, 34);
+            this.btnAttach.Size = new System.Drawing.Size(90, 28);
             this.btnAttach.TabIndex = 9;
             this.btnAttach.Text = "Attach File";
             this.btnAttach.UseVisualStyleBackColor = false;
@@ -208,50 +222,55 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(112, 256);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Location = new System.Drawing.Point(98, 208);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(139, 86);
+            this.pictureBox1.Size = new System.Drawing.Size(104, 70);
             this.pictureBox1.TabIndex = 16;
             this.pictureBox1.TabStop = false;
+            // 
+            // lblImagePath
+            // 
+            this.lblImagePath.AutoSize = true;
+            this.lblImagePath.Location = new System.Drawing.Point(257, 206);
+            this.lblImagePath.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblImagePath.Name = "lblImagePath";
+            this.lblImagePath.Size = new System.Drawing.Size(16, 15);
+            this.lblImagePath.TabIndex = 18;
+            this.lblImagePath.Text = "...";
             // 
             // progressBar1
             // 
             this.progressBar1.BackColor = System.Drawing.Color.White;
             this.progressBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(32)))));
-            this.progressBar1.Location = new System.Drawing.Point(499, 22);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.progressBar1.Location = new System.Drawing.Point(373, 18);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(156, 23);
+            this.progressBar1.Size = new System.Drawing.Size(117, 19);
             this.progressBar1.TabIndex = 12;
             // 
             // lblProgress
             // 
             this.lblProgress.AutoSize = true;
-            this.lblProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(32)))));
-            this.lblProgress.Location = new System.Drawing.Point(500, 52);
-            this.lblProgress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblProgress.BackColor = System.Drawing.Color.Transparent;
+            this.lblProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProgress.ForeColor = System.Drawing.Color.Black;
+            this.lblProgress.Location = new System.Drawing.Point(374, 43);
             this.lblProgress.Name = "lblProgress";
-            this.lblProgress.Size = new System.Drawing.Size(108, 16);
+            this.lblProgress.Size = new System.Drawing.Size(118, 15);
             this.lblProgress.TabIndex = 17;
             this.lblProgress.Text = "Let\'s Get Started!";
             // 
-            // lblImagePath
-            // 
-            this.lblImagePath.AutoSize = true;
-            this.lblImagePath.Location = new System.Drawing.Point(344, 254);
-            this.lblImagePath.Name = "lblImagePath";
-            this.lblImagePath.Size = new System.Drawing.Size(16, 16);
-            this.lblImagePath.TabIndex = 18;
-            this.lblImagePath.Text = "...";
-            // 
             // ReportIssues
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ReportIssues";
             this.Text = "Report Issues";
             this.tableLayoutPanel1.ResumeLayout(false);
