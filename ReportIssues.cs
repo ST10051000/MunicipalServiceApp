@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ namespace MunicipalServiceApp
 {
     public partial class ReportIssues : Form
     {
+        Homepage homepage = new Homepage();
+
         /// <summary>
         /// List that stores the report input
         /// </summary>

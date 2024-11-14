@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Announcements));
             this.panelSearch = new System.Windows.Forms.Panel();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -60,12 +59,12 @@
             this.panelSearch.Location = new System.Drawing.Point(0, 0);
             this.panelSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelSearch.Name = "panelSearch";
-            this.panelSearch.Size = new System.Drawing.Size(800, 57);
+            this.panelSearch.Size = new System.Drawing.Size(628, 57);
             this.panelSearch.TabIndex = 0;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(560, 14);
+            this.btnSearch.Location = new System.Drawing.Point(473, 16);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(88, 32);
@@ -77,10 +76,10 @@
             // txtSearch
             // 
             this.txtSearch.ForeColor = System.Drawing.Color.DimGray;
-            this.txtSearch.Location = new System.Drawing.Point(137, 15);
+            this.txtSearch.Location = new System.Drawing.Point(37, 21);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(400, 20);
+            this.txtSearch.Size = new System.Drawing.Size(400, 22);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.Text = "Search announcements";
             // 
@@ -93,25 +92,25 @@
             this.panelFilter.Controls.Add(this.btnAnnouncements);
             this.panelFilter.Controls.Add(this.btnEvents);
             this.panelFilter.Controls.Add(this.buttonAll);
-            this.panelFilter.Location = new System.Drawing.Point(0, 62);
+            this.panelFilter.Location = new System.Drawing.Point(2, 61);
             this.panelFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelFilter.Name = "panelFilter";
-            this.panelFilter.Size = new System.Drawing.Size(800, 60);
+            this.panelFilter.Size = new System.Drawing.Size(626, 48);
             this.panelFilter.TabIndex = 1;
             // 
             // dateFilter
             // 
             this.dateFilter.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateFilter.Location = new System.Drawing.Point(665, 4);
+            this.dateFilter.Location = new System.Drawing.Point(495, 4);
             this.dateFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateFilter.Name = "dateFilter";
-            this.dateFilter.Size = new System.Drawing.Size(119, 20);
+            this.dateFilter.Size = new System.Drawing.Size(119, 22);
             this.dateFilter.TabIndex = 4;
             // 
             // comboBoxCategory
             // 
             this.comboBoxCategory.FormattingEnabled = true;
-            this.comboBoxCategory.Location = new System.Drawing.Point(544, 2);
+            this.comboBoxCategory.Location = new System.Drawing.Point(373, 2);
             this.comboBoxCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxCategory.Name = "comboBoxCategory";
             this.comboBoxCategory.Size = new System.Drawing.Size(103, 24);
@@ -125,10 +124,10 @@
             this.btnAnnouncements.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAnnouncements.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAnnouncements.ForeColor = System.Drawing.Color.White;
-            this.btnAnnouncements.Location = new System.Drawing.Point(137, 16);
+            this.btnAnnouncements.Location = new System.Drawing.Point(128, 16);
             this.btnAnnouncements.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAnnouncements.Name = "btnAnnouncements";
-            this.btnAnnouncements.Size = new System.Drawing.Size(160, 32);
+            this.btnAnnouncements.Size = new System.Drawing.Size(121, 32);
             this.btnAnnouncements.TabIndex = 2;
             this.btnAnnouncements.Text = "Announcements";
             this.btnAnnouncements.UseVisualStyleBackColor = false;
@@ -141,10 +140,10 @@
             this.btnEvents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEvents.ForeColor = System.Drawing.Color.White;
-            this.btnEvents.Location = new System.Drawing.Point(57, 16);
+            this.btnEvents.Location = new System.Drawing.Point(58, 17);
             this.btnEvents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEvents.Name = "btnEvents";
-            this.btnEvents.Size = new System.Drawing.Size(88, 32);
+            this.btnEvents.Size = new System.Drawing.Size(64, 32);
             this.btnEvents.TabIndex = 1;
             this.btnEvents.Text = "Events";
             this.btnEvents.UseVisualStyleBackColor = false;
@@ -157,10 +156,10 @@
             this.buttonAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAll.ForeColor = System.Drawing.Color.White;
-            this.buttonAll.Location = new System.Drawing.Point(3, 16);
+            this.buttonAll.Location = new System.Drawing.Point(10, 16);
             this.buttonAll.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonAll.Name = "buttonAll";
-            this.buttonAll.Size = new System.Drawing.Size(49, 32);
+            this.buttonAll.Size = new System.Drawing.Size(42, 32);
             this.buttonAll.TabIndex = 0;
             this.buttonAll.Text = "All";
             this.buttonAll.UseVisualStyleBackColor = false;
@@ -177,11 +176,11 @@
             this.Description});
             this.listViewAnnouncements.FullRowSelect = true;
             this.listViewAnnouncements.HideSelection = false;
-            this.listViewAnnouncements.Location = new System.Drawing.Point(0, 114);
+            this.listViewAnnouncements.Location = new System.Drawing.Point(12, 114);
             this.listViewAnnouncements.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listViewAnnouncements.MultiSelect = false;
             this.listViewAnnouncements.Name = "listViewAnnouncements";
-            this.listViewAnnouncements.Size = new System.Drawing.Size(800, 184);
+            this.listViewAnnouncements.Size = new System.Drawing.Size(604, 240);
             this.listViewAnnouncements.TabIndex = 2;
             this.listViewAnnouncements.UseCompatibleStateImageBehavior = false;
             this.listViewAnnouncements.View = System.Windows.Forms.View.Details;
@@ -209,10 +208,10 @@
             this.RecommendTitle,
             this.RecommendDescription});
             this.listViewRecommendations.HideSelection = false;
-            this.listViewRecommendations.Location = new System.Drawing.Point(0, 325);
+            this.listViewRecommendations.Location = new System.Drawing.Point(12, 381);
             this.listViewRecommendations.Margin = new System.Windows.Forms.Padding(4);
             this.listViewRecommendations.Name = "listViewRecommendations";
-            this.listViewRecommendations.Size = new System.Drawing.Size(326, 125);
+            this.listViewRecommendations.Size = new System.Drawing.Size(314, 112);
             this.listViewRecommendations.TabIndex = 3;
             this.listViewRecommendations.UseCompatibleStateImageBehavior = false;
             this.listViewRecommendations.View = System.Windows.Forms.View.List;
@@ -238,8 +237,8 @@
             this.lblRecommendations.AutoSize = true;
             this.lblRecommendations.BackColor = System.Drawing.Color.Transparent;
             this.lblRecommendations.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecommendations.ForeColor = System.Drawing.Color.Black;
-            this.lblRecommendations.Location = new System.Drawing.Point(-1, 302);
+            this.lblRecommendations.ForeColor = System.Drawing.Color.White;
+            this.lblRecommendations.Location = new System.Drawing.Point(9, 360);
             this.lblRecommendations.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRecommendations.Name = "lblRecommendations";
             this.lblRecommendations.Size = new System.Drawing.Size(114, 17);
@@ -250,8 +249,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.Green;
+            this.ClientSize = new System.Drawing.Size(628, 506);
             this.Controls.Add(this.lblRecommendations);
             this.Controls.Add(this.listViewRecommendations);
             this.Controls.Add(this.listViewAnnouncements);

@@ -10,35 +10,48 @@ using System.Windows.Forms;
 
 namespace MunicipalServiceApp
 {
-    public partial class HomePage : Form
+    public partial class Homepage : Form
     {
-        public HomePage()
+        public Homepage()
         {
             InitializeComponent();
         }
 
+        private Form activeForm = null;
+
+        private void openChildFormInPanel(Form childForm)
+        {
+            if (activeForm != null)
+                activeForm.Close();
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            panelChildForm.Controls.Add(childForm);
+            panelChildForm.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            if (activeForm != null)
+                activeForm.Close();
+        }
+
         private void btnReportIssues_Click(object sender, EventArgs e)
         {
-            ReportIssues reports = new ReportIssues();
-            reports.MdiParent = this.MdiParent;
-            reports.Show();
-            this.Close(); // Close the current form
+            openChildFormInPanel(new ReportIssues());
         }
 
-        private void btnEvents_Click(object sender, EventArgs e)
+        private void btnEventsAnnounce_Click(object sender, EventArgs e)
         {
-            Announcements announcements = new Announcements();
-            announcements.MdiParent = this.MdiParent;
-            announcements.Show();
-            this.Close(); // Close the current form
+            openChildFormInPanel(new Announcements());
         }
 
-        private void btnRequestServ_Click(object sender, EventArgs e)
+        private void btnServiceRequest_Click(object sender, EventArgs e)
         {
-            ServiceRequests requests = new ServiceRequests();
-            requests.MdiParent = this.MdiParent;
-            requests.Show();
-            this.Close(); // Close the current form
+            openChildFormInPanel(new ServiceRequests());
         }
     }
 }
