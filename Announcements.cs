@@ -272,8 +272,8 @@ namespace MunicipalServiceApp
         }
 
         //----------------------------------------------------------------------------------------------------------------------------------
-
-        private void btnSearch_Click(object sender, EventArgs e)
+        
+        private void btnSearch_Click_1(object sender, EventArgs e)
         {
             string searchText = txtSearch.Text;
             SearchEvent(searchText);  // Calling the search method

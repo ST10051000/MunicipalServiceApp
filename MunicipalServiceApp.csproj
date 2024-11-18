@@ -53,6 +53,9 @@
       <DependentUpon>Announcements.cs</DependentUpon>
     </Compile>
     <Compile Include="AnnouncementsClass.cs" />
+    <Compile Include="Data Structures\BinarySearchTree.cs" />
+    <Compile Include="Data Structures\Graph.cs" />
+    <Compile Include="Data Structures\MinHeap.cs" />
     <Compile Include="Homepage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,13 +70,9 @@
     <Compile Include="ReportIssues.Designer.cs">
       <DependentUpon>ReportIssues.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reports.Designer.cs">
-      <DependentUpon>Reports.cs</DependentUpon>
-    </Compile>
     <Compile Include="ReportsClass.cs" />
+    <Compile Include="ServiceRequestClass.cs" />
+    <Compile Include="ServiceRequestManager.cs" />
     <Compile Include="ServiceRequests.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,9 +97,6 @@
     <EmbeddedResource Include="ReportIssues.resx">
       <DependentUpon>ReportIssues.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports.resx">
-      <DependentUpon>Reports.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ServiceRequests.resx">
       <DependentUpon>ServiceRequests.cs</DependentUpon>
     </EmbeddedResource>
@@ -117,5 +113,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

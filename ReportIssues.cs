@@ -14,8 +14,6 @@ namespace MunicipalServiceApp
 {
     public partial class ReportIssues : Form
     {
-        Homepage homepage = new Homepage();
-
         /// <summary>
         /// List that stores the report input
         /// </summary>
@@ -26,10 +24,25 @@ namespace MunicipalServiceApp
         /// </summary>
         private string imagePath;
 
-        public ReportIssues()
+        /// <summary>
+        /// Declaring a private field to hold the reference to the shared ServiceRequestManager instance.
+        /// </summary>
+        private ServiceRequestManager manager;
+
+        /// <summary>
+        /// Constructor accepting a ServiceRequestManager instance as a parameter.
+        /// </summary>
+        /// <param name="serviceRequestManager"></param>
+        public ReportIssues(ServiceRequestManager serviceRequestManager)
         {
             InitializeComponent();
+
+            // Assign the passed ServiceRequestManager instance to the private field.
+            // This allows the form to access and modify the shared service request data.
+            manager = serviceRequestManager;
         }
+
+        //----------------------------------------------------------------------------------------------------------------------------------
 
         /// <summary>
         /// This button allows the user to search and add an attachment
@@ -72,6 +85,8 @@ namespace MunicipalServiceApp
             }
         }
 
+        //----------------------------------------------------------------------------------------------------------------------------------
+
         /// <summary>
         /// This button will save all the user input to a list
         /// </summary>
@@ -97,17 +112,20 @@ namespace MunicipalServiceApp
                 return;
             }
 
-            // Collecting user input
-            ReportsClass reportData = new ReportsClass
+            // Create a new ServiceRequestClass instance with default status "Pending"
+            ServiceRequestClass newRequest = new ServiceRequestClass
             {
-                Location = txtLocation.Text,  
+                ID = manager.GetAllRequests().Count + 1,  // Generate a new unique ID
+                Location = txtLocation.Text,
                 Category = cmboCategory.Text,
                 Description = txtDescription.Text,
                 ImagePath = imagePath,
+                Status = "Pending",  // Default status
+                DateRequested = DateTime.Now
             };
 
-            // Add data to the list
-            reportInputList.Add(reportData);
+            // Add the new request to the manager
+            manager.AddRequest(newRequest);
 
             // Clearing all the fields for new data
             txtLocation.Clear();
@@ -120,22 +138,9 @@ namespace MunicipalServiceApp
 
             // Success message
             MessageBox.Show("We've got your report!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
         }
 
-        /// <summary>
-        /// This button will take the user to the reports form 
-        /// that displays all the reports the user has entered
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnReports_Click(object sender, EventArgs e)
-        {
-            Reports reports = new Reports();
-            reports.MdiParent = this.MdiParent;  
-            reports.Show();
-            this.Close(); // Close the current form
-        }
+        //----------------------------------------------------------------------------------------------------------------------------------
 
         /// <summary>
         /// This method updates the progress bar as the user fills in the form
@@ -160,6 +165,8 @@ namespace MunicipalServiceApp
 
             progressBar1.Value = progress;  // Update progress
         }
+
+        //----------------------------------------------------------------------------------------------------------------------------------
 
         /// <summary>
         /// Calls the method that updates the progress bar 
@@ -198,3 +205,4 @@ namespace MunicipalServiceApp
         }
     }
 }
+//-------------------------------------------------------------THE END----------------------------------------------------------------------

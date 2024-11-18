@@ -38,10 +38,11 @@
             this.panelChildForm = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.lblLogo = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.panelSideMenu.SuspendLayout();
+            this.panelLogo.SuspendLayout();
             this.panelChildForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // panelSideMenu
@@ -133,6 +134,7 @@
             // 
             // panelLogo
             // 
+            this.panelLogo.Controls.Add(this.pictureBoxLogo);
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
             this.panelLogo.Name = "panelLogo";
@@ -142,9 +144,10 @@
             // panelChildForm
             // 
             this.panelChildForm.BackColor = System.Drawing.Color.Green;
+            this.panelChildForm.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelChildForm.BackgroundImage")));
+            this.panelChildForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panelChildForm.Controls.Add(this.label1);
             this.panelChildForm.Controls.Add(this.lblLogo);
-            this.panelChildForm.Controls.Add(this.pictureBox1);
             this.panelChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelChildForm.Location = new System.Drawing.Point(286, 0);
             this.panelChildForm.Name = "panelChildForm";
@@ -153,43 +156,43 @@
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.label1.Location = new System.Drawing.Point(259, 416);
+            this.label1.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label1.Location = new System.Drawing.Point(278, 472);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 39);
+            this.label1.Size = new System.Drawing.Size(141, 34);
             this.label1.TabIndex = 2;
             this.label1.Text = "Service";
             // 
             // lblLogo
             // 
-            this.lblLogo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblLogo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblLogo.AutoSize = true;
-            this.lblLogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.lblLogo.Location = new System.Drawing.Point(246, 377);
+            this.lblLogo.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLogo.ForeColor = System.Drawing.Color.Red;
+            this.lblLogo.Location = new System.Drawing.Point(259, 37);
             this.lblLogo.Name = "lblLogo";
-            this.lblLogo.Size = new System.Drawing.Size(181, 39);
+            this.lblLogo.Size = new System.Drawing.Size(195, 34);
             this.lblLogo.TabIndex = 1;
             this.lblLogo.Text = "Municipal ";
             // 
-            // pictureBox1
+            // pictureBoxLogo
             // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(216, 66);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(244, 277);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogo.Image")));
+            this.pictureBoxLogo.Location = new System.Drawing.Point(12, 12);
+            this.pictureBoxLogo.Name = "pictureBoxLogo";
+            this.pictureBoxLogo.Size = new System.Drawing.Size(99, 82);
+            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxLogo.TabIndex = 0;
+            this.pictureBoxLogo.TabStop = false;
             // 
             // Homepage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Green;
             this.ClientSize = new System.Drawing.Size(932, 553);
             this.Controls.Add(this.panelChildForm);
             this.Controls.Add(this.panelSideMenu);
@@ -200,9 +203,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Municipal Sercive";
             this.panelSideMenu.ResumeLayout(false);
+            this.panelLogo.ResumeLayout(false);
             this.panelChildForm.ResumeLayout(false);
             this.panelChildForm.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -216,8 +220,8 @@
         private System.Windows.Forms.Button btnEventsAnnounce;
         private System.Windows.Forms.Button btnReportIssues;
         private System.Windows.Forms.Panel panelChildForm;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblLogo;
+        private System.Windows.Forms.PictureBox pictureBoxLogo;
     }
 }
