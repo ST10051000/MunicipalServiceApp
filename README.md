@@ -64,12 +64,6 @@ Report Issues
 - Once the user has filled in all the fields they can click the "Submit" button which will then save all the information. 
 - If the user would like to view their reported issue, they should navigate to the "Service Request Status" interface.
 
-Reports
-
-- When the user clicks on the "View Reports" button on the report issues form or the View > Reports option in the navigation bar then they will be navigated to this page. 
-- This form will display all the details about the issues that the user has reported. 
-- (location, category, description and attachment).
-
 Local Events and Announcements
 
 - The user will be navigated to this page when clicking the "Local Events & Announcements" button on the sidebar.
